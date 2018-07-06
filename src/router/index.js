@@ -33,6 +33,36 @@ export const constantRouterMap = [
       name: 'dashboard',
       meta: { title: '首页', icon: 'dashboard', noCache: true }
     }]
+  },
+  {
+    path: '/successOrder',
+    component: Layout,
+    children: [{
+      path: '',
+      component: () => import('@/views/successOrder/page'),
+      name: 'successOrder',
+      meta: { title: '成功订单', icon: 'component', noCache: true }
+    }]
+  },
+  {
+    path: '/failOrder',
+    component: Layout,
+    children: [{
+      path: '',
+      component: () => import('@/views/failOrder/page'),
+      name: 'failOrder',
+      meta: { title: '失败订单', icon: 'component', noCache: true }
+    }]
+  },
+   { 
+    path: '/noOrder',
+    component: Layout,
+    children: [{
+      path: '',
+      component: () => import('@/views/noOrder/page'),
+      name: 'noOrder',
+      meta: { title: '未完成订单', icon: 'component', noCache: true }
+    }]
   }
 ]
 
@@ -43,152 +73,5 @@ export default new Router({
 })
 
 export const asyncRouterMap = [
-  {
-    path: '/permission',
-    component: Layout,
-    redirect: '/permission/index',
-    alwaysShow: true, // will always show the root menu
-    meta: {
-      title: '财务管理',
-      icon: 'lock',
-    },
-    children: [{
-      path: 'page',
-      component: () => import('@/views/permission/page'),
-      name: 'pagePermission',
-      meta: {
-        title: '代理佣金管理',
-      }
-    }, {
-      path: 'directive',
-      component: () => import('@/views/permission/directive'),
-      name: 'directivePermission',
-      meta: {
-        title: '订单手续费管理'
-      }
-    }, {
-      path: 'cash',
-      component: () => import('@/views/permission/cash'),
-      name: 'cashPermission',
-      meta: {
-        title: '佣金提现'
-      }
-    }]
-  },
-  
-   {
-    path: '/orderManage',
-    component: Layout,
-    redirect: '/orderManage/index',
-    alwaysShow: true, // will always show the root menu
-    meta: {
-      title: '订单管理',
-      icon: 'component',
-    },
-    children: [{
-      path: 'page',
-      component: () => import('@/views/orderManage/page'),
-      name: 'pagePermission',
-      meta: {
-        title: '订单列表',
-      }
-    },
-    {
-      path: 'dataChart',
-      component: () => import('@/views/orderManage/dataChart'),
-      name: 'dataChart',
-      meta: {
-        title: '数据统计',
-      }
-    }
-    ]
-  },
-
-  
-  {
-    path: '/systemManage',
-    component: Layout,
-    redirect: '/orderManage/index',
-    alwaysShow: true, // will always show the root menu
-    meta: {
-      title: '系统管理',
-      icon: 'component',
-    },
-    children: [{
-      path: 'page',
-      component: () => import('@/views/systemManage/page'),
-      name:'productManage',
-      meta: {
-        title: '产品管理',
-      }
-    },{
-      path: 'riskManage',
-      component: () => import('@/views/systemManage/riskManage'),
-      name:'riskManage',
-      meta: {
-        title: '风控管理',
-      }
-    },{
-      path: 'wayManage',
-      component: () => import('@/views/systemManage/wayManage'),
-      name:'wayManage',
-      meta: {
-        title: '通道管理',
-      }
-    },{
-      path: 'agreeManage',
-      component: () => import('@/views/systemManage/agreeManage'),
-      name:'agreeManage',
-      meta: {
-        title: '协议管理',
-      }
-    },{
-      path: 'businessManage',
-      component: () => import('@/views/systemManage/businessManage'),
-      name:'businessManage',
-      meta: {
-        title: '运营管理',
-      }
-    }
-    ]
-  },
-  
-    {
-    path: '/userManage',
-    component: Layout,
-    redirect: '/userManage/index',
-    alwaysShow: true, // will always show the root menu
-    meta: {
-      title: '用户管理',
-      icon: 'component',
-    },
-    children: [{
-      path: 'page',
-      component: () => import('@/views/userManage/page'),
-      name: 'user',
-      meta: {
-        title: '代理人管理',
-      }
-    },{
-      path: 'dataChart',
-      component: () => import('@/views/userManage/dataChart'),
-      name: 'dataChart',
-      meta: {
-        title: '数据统计'
-      }, hidden:true 
-    },{
-      path: 'userpage',
-      component: () => import('@/views/userManage/userpage'),
-      name: 'userpage',
-      meta: {
-        title: '消费者管理'
-      }
-    }
-  
-    ]
-  },
-
- 
-
   { path: '*', redirect: '/404', hidden: true }
 ]
