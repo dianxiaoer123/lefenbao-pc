@@ -1,114 +1,116 @@
 <template>
   <div class="dashboard-editor-container">
-    <panel-group @handleSetLineChartData="handleSetLineChartData"></panel-group>
+   
 
-    <el-row style="background:#fff;padding:16px 16px 0;margin-bottom:32px;">
-      <line-chart :chart-data="lineChartData"></line-chart>
-    </el-row>
+    <el-form label-width="90px">
+      <div style="margin-bottom:30px;">
+        <el-button type="primary">分期预算</el-button>
+      </div>
+     
+      <el-form-item label="保险产品：">
+        <el-input></el-input>
+      </el-form-item>
 
-    <el-row :gutter="32">
-      <el-col :xs="24" :sm="24" :lg="8">
-        <div class="chart-wrapper">
-           <div class='chartName yellowSty'>
-           	  <div class='inspan'>
-           	  	 <span class="userIcon"></span>
-            	   <span>团队一</span>
-           	  </div>
-           </div>
-           
-           <div class="chartCont" v-for="item in tableData">
-            	<el-row :gutter="0">
-                <el-col :span="12">
-                	 <div class='colspan'>{{item.name}}</div>
-                </el-col>
-                <el-col :span="12">
-                	 <div class='colspan'>{{item.cont}}</div>
-                </el-col>
-             </el-row>
-           </div>
-        </div>
-      </el-col>
-      
-            <el-col :xs="24" :sm="24" :lg="8">
-        <div class="chart-wrapper">
-           <div class='chartName greenSty'>
-           	  <div class='inspan'>
-           	  	 <span class="userIcon"></span>
-            	   <span>团队一</span>
-           	  </div>
-           </div>
-           
-           <div class="chartCont" v-for="item in tableData">
-            	<el-row :gutter="0">
-                <el-col :span="12">
-                	 <div class='colspan'>{{item.name}}</div>
-                </el-col>
-                <el-col :span="12">
-                	 <div class='colspan'>{{item.cont}}</div>
-                </el-col>
-             </el-row>
-           </div>
-        </div>
-      </el-col>
-      
-            <el-col :xs="24" :sm="24" :lg="8">
-        <div class="chart-wrapper">
-           <div class='chartName blueSty'>
-           	  <div class='inspan'>
-           	  	 <span class="userIcon"></span>
-            	   <span>团队一</span>
-           	  </div>
-           </div>
-           
-           <div class="chartCont" v-for="item in tableData">
-            	<el-row :gutter="0">
-                <el-col :span="12">
-                	 <div class='colspan'>{{item.name}}</div>
-                </el-col>
-                <el-col :span="12">
-                	 <div class='colspan'>{{item.cont}}</div>
-                </el-col>
-             </el-row>
-           </div>
-        </div>
-      </el-col>
+       <el-form-item label="保单号">
+        <el-input></el-input>
+      </el-form-item>
 
-    </el-row>
+         <el-form-item label="保险金额">
+        <el-input></el-input>
+      </el-form-item>
+
+         <el-form-item label="分期期数">
+        <el-input></el-input>
+      </el-form-item>
+
+      <div class="borderBox">
+          <div style="margin-bottom:30px;">
+            <el-button type="primary">分期测试</el-button>
+         </div>
+         <el-row>
+           <el-col :span="8">
+              <div class='lineSpan'>
+                 <span class='bigSpan'>￥</span>
+                 <span>0.00</span>
+              </div>
+              <div class='elBtn'>
+                 <el-button plain>订单金额</el-button>
+              </div>
+               
+           </el-col>
+           <el-col :span="8">
+                   <div class='lineSpan'>
+                 <span class='bigSpan'>3</span>
+                 <span>期</span>
+              </div>
+              <div class='elBtn'>
+                 <el-button plain>期数</el-button>
+              </div>
+           </el-col>
+           <el-col :span="8">
+                <div class='lineSpan'>
+                 <span class='bigSpan'>￥</span>
+                 <span>0.00</span>
+              </div>
+              <div class='elBtn'>
+                 <el-button plain>每期支付</el-button>
+              </div>
+           </el-col>
+        </el-row>
+      </div>
+
+        <div style="margin-bottom:30px;margin-top:30px;">
+        <el-button type="primary">缴费账户信息</el-button>
+      </div>
+     
+      <el-form-item label="身份证号：">
+        <el-input></el-input>
+      </el-form-item>
+
+    <el-form-item label="投保人：">
+        <el-input></el-input>
+      </el-form-item>
+
+    <el-form-item label="开户银行：">
+        <el-input></el-input>
+      </el-form-item>
+
+    <el-form-item label="扣款账户：">
+        <el-input></el-input>
+      </el-form-item>
+
+        <div style="margin-bottom:30px;margin-top:30px;">
+        <el-button type="primary">生成订单</el-button>
+      </div>
+
+    </el-form>
+ 
   </div>
 </template>
 
 <script>
 
-import PanelGroup from './components/PanelGroup'
-import LineChart from './components/LineChart'
 
-const lineChartData = {
-  newVisitis: {
-    expectedData: [100, 120, 161, 134, 105, 160, 165],
-    actualData: [120, 82, 91, 154, 162, 140, 145]
-  },
-  messages: {
-    expectedData: [200, 192, 120, 144, 160, 130, 140],
-    actualData: [180, 160, 151, 106, 145, 150, 130]
-  },
-  purchases: {
-    expectedData: [80, 100, 121, 104, 105, 90, 100],
-    actualData: [120, 90, 100, 138, 142, 130, 130]
-  },
-  shoppings: {
-    expectedData: [130, 140, 141, 142, 145, 150, 160],
-    actualData: [120, 82, 91, 154, 162, 140, 130]
-  }
-}
 
 export default {
   name: 'dashboard-admin',
-  components: {
-    PanelGroup,
-    LineChart,
-  },
+
   data() {
     return {
+    	 topGroups:[],
+    	  panelData:{
+    	  	yd:{
+    	  		addConsumerNum:0,
+    	  		addOrderNum:0,
+    	  		addOrderAmount:0
+    	  	},
+    	  	total:{
+    	  		agentNum:0,
+    	  		consumerNum:0,
+    	  		orderAmount:0,
+    	  		orderNum:0
+    	  	}
+    	  },
     	  tableData: [{
             name: '团队名称：',
             cont: '名称一'
@@ -122,9 +124,17 @@ export default {
             name: '团队人数：',
             cont: '50'
           }],
-      lineChartData: lineChartData.newVisitis
+      lineChartData: {
+      	dateData:[],
+      	expectedData:[],
+      	actualData:[]
+      }
     }
   },
+  mounted(){
+  
+  },
+
   methods: {
     handleSetLineChartData(type) {
       this.lineChartData = lineChartData[type]
@@ -134,9 +144,27 @@ export default {
 </script>
 
 <style rel="stylesheet/scss" lang="scss" scoped>
+.borderBox{
+  padding:20px 20px;
+  margin-top: 30px;
+  border:1px solid #eee;
+  border-radius: 5px;
+}
+.lineSpan{
+  text-align: center;
+}
+.lineSpan .bigSpan{
+  font-size: 32px;
+}
+.elBtn{
+  margin-top: 10px;
+  text-align:center;
+}
+
 .dashboard-editor-container {
+  width:500px;
   padding: 32px;
-  background-color: rgb(240, 242, 245);
+  // background-color: rgb(240, 242, 245);
   .chart-wrapper {
     background: #fff;
 /*    padding: 16px 16px 0;*/
@@ -164,14 +192,15 @@ export default {
 .el-table__row{
 	width: 50% !important;
 }
+
 .yellowSty{
-	background:#ff9666;
+	background:#f7c258;
 }
 .greenSty{
-	background:#a0d468;
+	background:#a5c562;
 }
-.blueSty{
-	background:#46c1de;
+.redSty{
+	background:#f56d61;
 }
 .chartName span{
 	float: left;
@@ -186,5 +215,12 @@ export default {
 	line-height: 50px;
 	text-indent: 10px;
 	color:#606266;
+}
+.chartTitle{
+	height: 50px;
+	line-height: 50px;
+	background: #0063d6;
+	color:white;
+	text-align: center;
 }
 </style>
