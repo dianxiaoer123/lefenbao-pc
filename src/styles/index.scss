@@ -200,28 +200,35 @@ code {
     display: inline-block;
     width:20px;
     height: 20px;
-    background: url(../../static/images/icon.png) no-repeat -523px -12px #a0d468;
+    background: url(../../static/images/icon.png) no-repeat -523px -12px #4ac7f3;
     border-radius: 3px;
 }
 .exitIcon{
      display: inline-block;
     width:20px;
     height: 20px;
-    background: url(../../static/images/icon.png) no-repeat -492px -11px #a0d468;
+    background: url(../../static/images/icon.png) no-repeat -492px -11px #4ac7f3;
     border-radius: 3px;
 }
 .emailIcon{
      display: inline-block;
     width:25px;
     height: 25px;
-    background: url(../../static/images/icon.png) no-repeat -453px -8px #8793b2;
+    background: url(../../static/images/icon.png) no-repeat -453px -8px #1f6fd0;
     border-radius: 3px;
+}
+.emailsn{
+  display: inline-block;
+ width:30px;
+ height: 25px;
+ background: url(../../static/images/icon.png) no-repeat -791px -13px;
+ border-radius: 3px;
 }
 .homeIcon{
       display: inline-block;
     width:35px;
     height: 35px;
-    background: url(../../static/images/icon.png) no-repeat -406px -5px #8793b2;
+    background: url(../../static/images/icon.png) no-repeat -406px -5px #1f6fd0;
     border-radius: 5px;
 }
 .peopleIcon{
@@ -229,28 +236,56 @@ code {
     width:45px;
     height: 35px;
     background: url(../../static/images/icon.png) no-repeat 0px 0px;
-    border-radius: 5px;
+  
+}
+.peopleIcon1{
+    display: inline-block;
+    width:45px;
+    height: 35px;
+    background: url(../../static/images/icon1.png) no-repeat 0px 0px;
+  
 }
 .moneyIcon{
     display: inline-block;
     width:45px;
     height: 40px;
     background: url(../../static/images/icon.png) no-repeat -87px 0px;
-    border-radius: 5px;
+   
+}
+.moneyIcon1{
+    display: inline-block;
+    width:55px;
+    height: 40px;
+    background: url(../../static/images/icon1.png) no-repeat -87px 0px;
+   
 }
 .orderIcon{
       display: inline-block;
     width:45px;
     height: 40px;
     background: url(../../static/images/icon.png) no-repeat -275px 0px;
-    border-radius: 5px;
+   
+}
+.orderIcon1{
+      display: inline-block;
+    width:45px;
+    height: 40px;
+    background: url(../../static/images/icon1.png) no-repeat -182px 0px;
+   
 }
 .jineIcon{
       display: inline-block;
     width:45px;
     height: 40px;
     background: url(../../static/images/icon.png) no-repeat -183px 0px;
-    border-radius: 5px;
+   
+}
+.jineIcon1{
+      display: inline-block;
+    width:55px;
+    height: 40px;
+    background: url(../../static/images/icon.png) no-repeat -270px 0px;
+   
 }
 .userIcon{
      display: inline-block;
@@ -260,7 +295,7 @@ code {
    
 }
 .copyright{
-    background: #b0bdd6;
+    background: #66b7ef;
     color:white;
     text-align: center;
     height: 50px;
@@ -270,11 +305,11 @@ code {
 .rightIcon{
    display: inline-block;
     width:35px;
-    height: 40px;
-    background: url(../../static/images/icon.png) no-repeat -695px 8px;
+    height: 25px;
+    background: url(../../static/images/icon.png) no-repeat -711px -18px;
 }
 .el-table th{
-    background: #616a87;
+    background: #0063d6;
     font-weight: normal;
    color:white;
    text-align: center;
@@ -286,11 +321,11 @@ code {
     margin-top: 50px;
 }
 .el-pagination.is-background .el-pager li:not(.disabled).active{
-    background: #616a87;
+    background: #3e8de9;
 }
 .tags-view-container .tags-view-wrapper .tags-view-item.active{
-    background-color: #616a87 !important;
-    border-color: #616a87 !important;
+    background-color: #1f6fd0 !important;
+    border-color: #1f6fd0 !important;
 }
 .logoBox{
     font-size: 14px;
@@ -298,7 +333,7 @@ code {
     padding-top: 30px;
     width:100%;
     color:white;
-    background: #57607D;
+    background: #033d63;
     padding-bottom: 30px;
     img{
       display: block;
@@ -314,5 +349,39 @@ code {
 }
 
 #app .sidebar-container{
-    background-color: rgb(48, 65, 86);
+    background-color: #1d4f8a;
+}
+#app .sidebar-container .el-submenu .el-menu-item{
+    background-color: #033d63 !important;
+
+}
+#app .sidebar-container .el-submenu .el-menu-item:hover{
+  background: rgba(23,63,110,0.5) !important;
+}
+
+.yjStyle{
+  color:#a5c562;
+}
+.ycStyle{
+  color:#f56d61;
+}
+label{
+  font-weight: normal;
+}
+.el-checkbox{
+  margin-right: 30px;
+  margin-left: 0px;
+}
+.el-checkbox+.el-checkbox{
+  margin-right: 30px;
+  margin-left: 0px;
+}
+.excelBtn{
+  display: inline-block;
+  background: #a5c562;
+  height: 36px;
+  width: 77px;
+  border:0px;
+  border-radius: 5px;
+  color:white;
 }

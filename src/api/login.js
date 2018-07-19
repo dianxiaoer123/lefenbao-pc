@@ -1,12 +1,24 @@
 import request from '@/utils/request'
 
-export function loginByUsername(username, password) {
-  const data = {
-    username,
-    password
-  }
+export function loginByUsername(data) {
   return request({
-    url: '/login/login',
+    url: '/pcagentapi/login',
+    method: 'post',
+    data
+  })
+}
+
+export function orderList(data) {
+  return request({
+    url: '/pcagentapi/order/list',
+    method: 'post',
+    data
+  })
+}
+
+export function cancelOrder(data) {
+  return request({
+    url: '/pcagentapi/order/cancel',
     method: 'post',
     data
   })

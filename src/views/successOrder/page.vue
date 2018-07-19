@@ -2,31 +2,36 @@
   <div class="app-container">
   	
   	<div class='inputBox'>
-  	<el-form :inline="true" :model="formInline">
-      <el-form-item label="订单号：">
-           <el-input></el-input>
+  	<el-form :inline="true" :model="searchData">
+  		
+  		<div>
+  			  <el-form-item label="订单编号" prop="orderId">
+           <el-input v-model="searchData.orderId" @keyup.enter.native="getPage"></el-input>
       </el-form-item>
       
-       <el-form-item label="保费金额：">
-           <el-input></el-input>
+       <el-form-item label="保费金额" prop="insuranceMoney">
+           <el-input v-model="searchData.insuranceMoney" @keyup.enter.native="getPage"></el-input>
       </el-form-item>
       
-        <el-form-item label="投保人">
-           <el-input></el-input>
+      <el-form-item label="投保人" prop="consumerName">
+          <el-input v-model="searchData.consumerName" @keyup.enter.native="getPage"></el-input>
+      </el-form-item>
+
+       <el-form-item label="保单号" prop="insuranceNo">
+          <el-input v-model="searchData.insuranceNo" @keyup.enter.native="getPage"></el-input>
       </el-form-item>
       
-          <el-form-item label="保单号">
-           <el-input></el-input>
-      </el-form-item>
+  
+  		</div>
+  		
       
+    
       <div>
       	  <el-form-item>
-              <el-button type="primary" icon="el-icon-search">查询</el-button>
+              <el-button type="primary" icon="el-icon-search" @click="getPage">查询</el-button>
           </el-form-item>
-          <el-form-item>
-              <el-button type="primary" icon="el-icon-edit" @click="addVisible = true">添加</el-button>
-          </el-form-item>
-    
+      
+        
       </div>
   
     </el-form>
@@ -34,291 +39,115 @@
   	</div>
      
  <el-table
-    ref="singleTable"
+     v-loading="loading"
     :data="tableData"
     highlight-current-row
     style="width: 100%">
     <el-table-column
-      property="bh"
-      label="订单号">
+      type="index"
+      label="序号">
     </el-table-column>
     <el-table-column
-      property="date"
-      label="订单生成时间">
+      property="orderId"
+      label="订单编号">
     </el-table-column>
     <el-table-column
-      property="name"
+      property="orderTime"
+      label="订单时间">
+    </el-table-column>
+    <el-table-column
+      property="insuranceMoney"
       label="保费金额">
     </el-table-column>
       <el-table-column
-      property="tc"
+      property="consumerName"
       label="投保人">
     </el-table-column>
       <el-table-column
-      property="ddje"
-      label="分期期数">
+      property="totalPeriod"
+      label="总期数">
     </el-table-column>
       <el-table-column
-      property="tjr"
+      property="insuranceNo"
       label="保单号">
     </el-table-column>
-      <el-table-column
-      property="tjje"
+
+    <el-table-column
+      property="orderMoney"
       label="订单金额">
     </el-table-column>
-     
+      
+   
       <el-table-column
-      label="操作" min-width='150'>
+      label="操作" width='150'>
       
        <template slot-scope="scope">
-        <el-button
-          size="mini"
-          type='primary'
-          @click="editVisible = true"">编辑</el-button>
+
         <el-button
           size="mini"
           type="danger"
-          @click="ssVisible = true" v-if='scope.row.flag != 1'>申诉</el-button>
-          
-            <el-button
-          size="mini"
-          type="primary"
-          @click="clVisible = true" v-if='scope.row.flag == 1'>申诉处理中</el-button>
+          @click="appeals(scope.row.orderId,scope.row.type)">申诉</el-button>
       </template>
     </el-table-column>
   </el-table>
+  
      
-<div class='pageBox'>
- <el-pagination
-  background
-  layout="prev, pager, next"
-  :total="100">
- </el-pagination>
-</div>
+  <div class='pageBox'>
+       <el-pagination
+        background
+        @size-change="handleSizeChange"
+        @current-change="handleCurrentChange"
+        :current-page="currentPage"
+        :page-sizes="[20, 40, 50, 100]"
+        :page-size="pageSize"
+        layout="total, sizes, prev, pager, next, jumper"
+        :total="totalPage">
+    </el-pagination>
 
-
-<!--添加-->
-<el-dialog
-  title="添加"
-  :visible.sync="addVisible"
-  width="30%">
-  <div style="width:80%;">
-  	 <el-form  label-width="100px" :model="sendForm">
-        <el-form-item label="订单号">
-          <el-input></el-input>
-        </el-form-item>
-        
-        <el-form-item label="保费金额">
-           <el-input></el-input>
-        </el-form-item>
-        
-         <el-form-item label="投保人">
-           <el-input></el-input>
-         </el-form-item>
-         
-         <el-form-item label="保单号">
-           <el-input></el-input>
-         </el-form-item>
-         
-        <el-form-item label="订单金额">
-           <el-input></el-input>
-         </el-form-item>
-         
-      </el-form>
   </div>
-  <span slot="footer" class="dialog-footer">
-    <el-button @click="addVisible = false">取 消</el-button>
-    <el-button type="primary" @click="addVisible = false">确 定</el-button>
-  </span>
-</el-dialog>
 
-<!--编辑-->
-<el-dialog
-  title="编辑"
-  :visible.sync="editVisible"
-  width="30%">
-  <div style="width:80%;">
-  	 <el-form  label-width="100px" :model="sendForm">
-         <el-form-item label="订单号">
-          <el-input></el-input>
-        </el-form-item>
-        
-        <el-form-item label="保费金额">
-           <el-input></el-input>
-        </el-form-item>
-        
-         <el-form-item label="投保人">
-           <el-input></el-input>
-         </el-form-item>
-         
-         <el-form-item label="保单号">
-           <el-input></el-input>
-         </el-form-item>
-         
-        <el-form-item label="订单金额">
-           <el-input></el-input>
-         </el-form-item>
-         
-      </el-form>
-  </div>
-  <span slot="footer" class="dialog-footer">
-    <el-button @click="editVisible = false">取 消</el-button>
-    <el-button type="primary" @click="editVisible = false">确 定</el-button>
-  </span>
-</el-dialog>
-
-
-
-<!--申诉-->
-<el-dialog
-  title="申诉原因"
-  :visible.sync="ssVisible"
-  width="30%">
-  <span>
-  	 <el-radio v-model="radio" label="1">保单未交费</el-radio>
-     <el-radio v-model="radio" label="2">保单已退保</el-radio>
-  </span>
-  <span slot="footer" class="dialog-footer">
-    <el-button @click="ssVisible = false">取 消</el-button>
-    <el-button type="primary" @click="ssVisible = false">确定</el-button>
-  </span>
-</el-dialog>
-
-<!--申诉处理中-->
-<el-dialog
-  title="提示"
-  :visible.sync="clVisible"
-  width="30%">
-  <span>
-  	 您的申诉已提交，请等待系统处理
-  </span>
-  <span slot="footer" class="dialog-footer">
-    <el-button @click="clVisible = false">取 消</el-button>
-    <el-button type="primary" @click="clVisible = false">确定</el-button>
-  </span>
-</el-dialog>
-
+  
 
 </div>
 </template>
 
 <script>
+import mixin from '@/utils/tablemixin.js';
 
-
-export default{
-  name: 'pagePermission',
+export default {
+  name: 'orderlist',
+  mixins: [mixin],
   
   data(){
-  	return{ 
-  		    radio:'1',
-  		    editVisible:false,
-  		    addVisible:false,
-  		    ssVisible:false,
-  		    clVisible:false,
-  		     sendForm:{
-  		     	 status:''
-  		     },
-  		     formInline:{
-  		     	status:''
-  		     },
-  		     
-  		     tableData: [{
-  		     	bh:1234544,
-            date: '2016-05-02 14:00',
-            name: '王小虎',
-            tc:33333,
-            ddje:123,
-            tjr:'王小明',
-            tjje:124,
-            jjtrj:'赵丽颖',
-            jjje:234,
-            status:'已结算',
-            flag:'1'
-        },{
-  		     	bh:1234544,
-            date: '2016-05-02 14:00',
-            name: '王小虎',
-            tc:33333,
-            ddje:123,
-            tjr:'王小明',
-            tjje:124,
-            jjtrj:'赵丽颖',
-            jjje:234,
-            status:'已结算'
-        },{
-  		     	bh:1234544,
-            date: '2016-05-02 14:00',
-            name: '王小虎',
-            tc:33333,
-            ddje:123,
-            tjr:'王小明',
-            tjje:124,
-            jjtrj:'赵丽颖',
-            jjje:234,
-            status:'已结算'
-        },{
-  		     	bh:1234544,
-            date: '2016-05-02 14:00',
-            name: '王小虎',
-            tc:33333,
-            ddje:123,
-            tjr:'王小明',
-            tjje:124,
-            jjtrj:'赵丽颖',
-            jjje:234,
-            status:'已结算'
-        },{
-  		     	bh:1234544,
-            date: '2016-05-02 14:00',
-            name: '王小虎',
-            tc:33333,
-            ddje:123,
-            tjr:'王小明',
-            tjje:124,
-            jjtrj:'赵丽颖',
-            jjje:234,
-            status:'已结算'
-        },{
-  		     	bh:1234544,
-            date: '2016-05-02 14:00',
-            name: '王小虎',
-            tc:33333,
-            ddje:123,
-            tjr:'王小明',
-            tjje:124,
-            jjtrj:'赵丽颖',
-            jjje:234,
-            status:'已结算'
-        },{
-  		     	bh:1234544,
-            date: '2016-05-02 14:00',
-            name: '王小虎',
-            tc:33333,
-            ddje:123,
-            tjr:'王小明',
-            tjje:124,
-            jjtrj:'赵丽颖',
-            jjje:234,
-            status:'已结算'
-        },{
-  		     	bh:1234544,
-            date: '2016-05-02 14:00',
-            name: '王小虎',
-            tc:33333,
-            ddje:123,
-            tjr:'王小明',
-            tjje:124,
-            jjtrj:'赵丽颖',
-            jjje:234,
-            status:'已结算'
-        }],
-  	}
+    return{
+    
+     
+     funcName:'OrderList',
+     searchData:{
+       type:'2',orderId:'',insuranceMoney:'',consumerName:'',insuranceNo:'',failStatus:''
+     }
+    }
   },
- 
-  methods: {
- 
+
+
+
+  methods:{
+    changeStatus(status,id){
+        var obj = {
+          status:status==1?2:1,
+          id:id
+        }
+         this.$store.dispatch('AgentUpstatus',obj).then((data) => {
+           if(data.code == 200){
+             this.getPage();
+           }
+       })
+    },
+
   }
+ 
 }
+
 </script>
 
 <style rel="stylesheet/scss" lang="scss" scoped>

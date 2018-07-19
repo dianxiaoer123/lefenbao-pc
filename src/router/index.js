@@ -12,17 +12,7 @@ export const constantRouterMap = [
   { path: '/authredirect', component: () => import('@/views/login/authredirect'), hidden: true },
   { path: '/404', component: () => import('@/views/errorPage/404'), hidden:true },
   { path: '/401', component: () => import('@/views/errorPage/401'), hidden: true },
-  {
-    path: '/documentation',
-    component: Layout,
-    redirect: '/documentation/index',
-    children: [{
-      path: 'index',
-      component: () => import('@/views/documentation/index'),
-      name: 'documentation',
-      meta: { title: '消息提醒', icon: 'documentation'}
-    }], hidden: true
-},
+  
   {
     path: '',
     component: Layout,
@@ -31,7 +21,7 @@ export const constantRouterMap = [
       path: 'dashboard',
       component: () => import('@/views/dashboard/index'),
       name: 'dashboard',
-      meta: { title: '首页', icon: 'dashboard', noCache: true }
+      meta: { title: '未完成订单', icon: 'dashboard', noCache: true }
     }]
   },
   {
@@ -54,16 +44,7 @@ export const constantRouterMap = [
       meta: { title: '失败订单', icon: 'component', noCache: true }
     }]
   },
-   { 
-    path: '/noOrder',
-    component: Layout,
-    children: [{
-      path: '',
-      component: () => import('@/views/noOrder/page'),
-      name: 'noOrder',
-      meta: { title: '未完成订单', icon: 'component', noCache: true }
-    }]
-  }
+  
 ]
 
 export default new Router({
