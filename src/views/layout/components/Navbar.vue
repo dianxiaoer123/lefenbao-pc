@@ -104,14 +104,30 @@ export default {
    }
 	},
 	mounted(){
+<<<<<<< HEAD
     // 当前时间
+=======
+>>>>>>> b38b262dcd865c95f02973874aee8caf481bfed0
 		var that = this;
 	    that.getnowTime();
 		setInterval(function(){
 			that.getnowTime();
 		},1000);
 	},
+<<<<<<< HEAD
   components: {Hamburger},
+=======
+
+	
+  components: {
+    Breadcrumb,
+    Hamburger,
+    ErrorLog,
+    Screenfull,
+    LangSelect,
+    ThemePicker
+  },
+>>>>>>> b38b262dcd865c95f02973874aee8caf481bfed0
   computed: {
     ...mapGetters([
       'sidebar',
@@ -120,6 +136,7 @@ export default {
     ])
   },
   methods: {
+<<<<<<< HEAD
     changePw:function(){
        var form = this.pwForm;
        this.$refs.pwForm.validate(valid => {
@@ -144,6 +161,8 @@ export default {
        })
    
     },
+=======
+>>>>>>> b38b262dcd865c95f02973874aee8caf481bfed0
   	getnowTime:function(){
   		var timestamp = new Date();
 		 this.time = timestamp.toLocaleTimeString();

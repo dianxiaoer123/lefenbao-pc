@@ -21,7 +21,11 @@ export const constantRouterMap = [
       path: 'dashboard',
       component: () => import('@/views/dashboard/index'),
       name: 'dashboard',
+<<<<<<< HEAD
       meta: { title: '未完成订单', icon: 'dashboard', noCache: true }
+=======
+      meta: { title: '工作台', icon: 'dashboard', noCache: true }
+>>>>>>> b38b262dcd865c95f02973874aee8caf481bfed0
     }]
   },
   {

@@ -2,10 +2,15 @@
   <div class="login-container">
     <el-form class="login-form" autoComplete="on" :model="loginForm" :rules="loginRules" ref="loginForm" label-position="left">
       <div class="title-container">
+<<<<<<< HEAD
         <h3 class="title">
         	<img src="../../../static/images/logo1.png"/>
         </h3>
    
+=======
+        <h3 class="title"><img src="../../../static/images/logo1.png"/></h3>
+        
+>>>>>>> b38b262dcd865c95f02973874aee8caf481bfed0
       </div>
       <el-form-item prop="account">
         <span class="svg-container svg-container_login">
@@ -28,7 +33,13 @@
 
       <el-button type="primary" style="width:100%;margin-bottom:30px;" :loading="loading" @click.native.prevent="handleLogin">登录</el-button>
 
+<<<<<<< HEAD
 
+=======
+      
+
+     
+>>>>>>> b38b262dcd865c95f02973874aee8caf481bfed0
     </el-form>
  
 
